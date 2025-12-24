@@ -1,6 +1,5 @@
 # Information & Reference System for Music Festivals (PostgreSQL)
 
-A complete demo-ready web application for the course project **"Информационно-справочная система музыкальных фестивалей"**.
 
 ## Stack
 - Node.js + Express
