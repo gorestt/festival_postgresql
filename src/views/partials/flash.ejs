@@ -1,0 +1,11 @@
+<div class="container mt-3">
+  <% if (flash.error && flash.error.length) { %>
+    <div class="alert alert-danger shadow-sm"><i class="bi bi-exclamation-triangle me-2"></i><%= flash.error[0] %></div>
+  <% } %>
+  <% if (flash.success && flash.success.length) { %>
+    <div class="alert alert-success shadow-sm"><i class="bi bi-check-circle me-2"></i><%= flash.success[0] %></div>
+  <% } %>
+  <% if (flash.info && flash.info.length) { %>
+    <div class="alert alert-info shadow-sm"><i class="bi bi-info-circle me-2"></i><%= flash.info[0] %></div>
+  <% } %>
+</div>

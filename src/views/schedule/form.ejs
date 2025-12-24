@@ -1,0 +1,68 @@
+<%- include("../partials/layout_top", { title }) %>
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+  <div>
+    <h1 class="h4 mb-1"><%= mode==='create' ? 'Добавить выступление' : 'Редактировать выступление' %></h1>
+    <div class="text-white-50">Свяжите артиста, сцену и фестиваль, укажите временной интервал.</div>
+  </div>
+  <a class="btn btn-outline-light" href="/schedule"><i class="bi bi-arrow-left me-1"></i>Назад</a>
+</div>
+
+<form class="card card-glass shadow-sm" method="post" action="<%= mode==='create' ? '/schedule' : ('/schedule/' + item.id + '?_method=PUT') %>">
+  <div class="card-body p-4 row g-3">
+    <div class="col-12 col-md-6">
+      <label class="form-label">Фестиваль</label>
+      <select class="form-select" name="festival_id" required>
+        <% festivals.forEach(f => { %>
+          <option value="<%= f.id %>" <%= item && String(item.festival_id)===String(f.id) ? 'selected' : '' %>><%= f.name %></option>
+        <% }) %>
+      </select>
+      <div class="form-text text-white-50">Сцена должна относиться к тому же фестивалю (контроль на уровне данных).</div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label">Сцена</label>
+      <select class="form-select" name="stage_id" required>
+        <% stages.forEach(s => { %>
+          <option value="<%= s.id %>" <%= item && String(item.stage_id)===String(s.id) ? 'selected' : '' %>>
+            <%= s.festival_name %> • <%= s.name %>
+          </option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Артист</label>
+      <select class="form-select" name="artist_id" required>
+        <% artists.forEach(a => { %>
+          <option value="<%= a.id %>" <%= item && String(item.artist_id)===String(a.id) ? 'selected' : '' %>><%= a.name %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label">Начало</label>
+      <input type="datetime-local" class="form-control" name="start_time"
+        value="<%= item ? new Date(item.start_time).toISOString().slice(0,16) : '' %>" required>
+    </div>
+    <div class="col-12 col-md-6">
+      <label class="form-label">Окончание</label>
+      <input type="datetime-local" class="form-control" name="end_time"
+        value="<%= item ? new Date(item.end_time).toISOString().slice(0,16) : '' %>" required>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label">Ожидаемая аудитория (необязательно)</label>
+      <input type="number" class="form-control" name="expected_attendance" min="0" value="<%= item ? (item.expected_attendance || '') : '' %>">
+    </div>
+    <div class="col-12 col-md-6">
+      <label class="form-label">Примечание</label>
+      <input class="form-control" name="notes" value="<%= item ? (item.notes || '') : '' %>">
+    </div>
+
+    <div class="col-12 d-flex gap-2">
+      <button class="btn btn-primary" type="submit"><i class="bi bi-save me-1"></i>Сохранить</button>
+      <a class="btn btn-outline-light" href="/schedule">Отмена</a>
+    </div>
+  </div>
+</form>
+<%- include("../partials/layout_bottom") %>

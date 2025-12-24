@@ -1,0 +1,88 @@
+<%- include("../partials/layout_top", { title }) %>
+<div class="d-flex justify-content-between align-items-end gap-3 flex-wrap mb-3">
+  <div>
+    <h1 class="h4 mb-1">Фестивали</h1>
+    <div class="text-white-50">Каталог фестивалей с фильтром и сортировкой.</div>
+  </div>
+  <% if (isAnyRole(["ORGANIZER","ADMIN"])) { %>
+    <a class="btn btn-primary" href="/festivals/new"><i class="bi bi-plus-circle me-1"></i>Добавить</a>
+  <% } %>
+</div>
+
+<form class="card card-glass shadow-sm mb-4" method="get" action="/festivals">
+  <div class="card-body p-3 p-md-4 row g-2 align-items-end">
+    <div class="col-12 col-md-5">
+      <label class="form-label">Поиск</label>
+      <input class="form-control" name="q" value="<%= q %>" placeholder="Название, город или жанр...">
+    </div>
+    <div class="col-6 col-md-3">
+      <label class="form-label">Сортировка</label>
+      <select class="form-select" name="sort">
+        <option value="start_date" <%= sort==='start_date'?'selected':'' %>>Дата начала</option>
+        <option value="end_date" <%= sort==='end_date'?'selected':'' %>>Дата окончания</option>
+        <option value="name" <%= sort==='name'?'selected':'' %>>Название</option>
+        <option value="city" <%= sort==='city'?'selected':'' %>>Город</option>
+        <option value="genre" <%= sort==='genre'?'selected':'' %>>Жанр</option>
+      </select>
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label">Порядок</label>
+      <select class="form-select" name="order">
+        <option value="desc" <%= order==='DESC'?'selected':'' %>>Убыв.</option>
+        <option value="asc" <%= order==='ASC'?'selected':'' %>>Возр.</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-2 d-grid">
+      <button class="btn btn-outline-light" type="submit"><i class="bi bi-search me-1"></i>Применить</button>
+    </div>
+  </div>
+</form>
+
+<div class="row g-3">
+  <% festivals.forEach(f => { %>
+    <div class="col-12 col-lg-6">
+      <div class="card card-glass shadow-sm h-100">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-start gap-3">
+            <div>
+              <a class="h5 text-decoration-none text-white" href="/festivals/<%= f.id %>"><%= f.name %></a>
+              <div class="text-white-50 small"><i class="bi bi-geo-alt me-1"></i><%= f.city %>, <%= f.country %></div>
+            </div>
+            <div class="text-end">
+              <span class="badge bg-soft"><%= f.genre %></span>
+              <div class="small text-white-50 mt-2">
+                <% if (f.avg_rating) { %>
+                  <i class="bi bi-star-fill me-1"></i><%= f.avg_rating %> (<%= f.reviews %>)
+                <% } else { %>нет оценок<% } %>
+              </div>
+            </div>
+          </div>
+          <div class="text-white-50 small mt-3">
+            <i class="bi bi-calendar3 me-1"></i>
+            <%= new Date(f.start_date).toLocaleDateString("ru-RU") %> — <%= new Date(f.end_date).toLocaleDateString("ru-RU") %>
+          </div>
+          <% if (f.description) { %>
+            <div class="mt-3 text-white-50 clamp-3"><%= f.description %></div>
+          <% } %>
+          <div class="mt-3 d-flex gap-2">
+            <a class="btn btn-sm btn-outline-light" href="/festivals/<%= f.id %>"><i class="bi bi-eye me-1"></i>Открыть</a>
+            <% if (isAnyRole(["ORGANIZER","ADMIN"])) { %>
+              <a class="btn btn-sm btn-outline-light" href="/festivals/<%= f.id %>/edit"><i class="bi bi-pencil me-1"></i>Изменить</a>
+              <form method="post" action="/festivals/<%= f.id %>?_method=DELETE" onsubmit="return confirm('Удалить фестиваль?');">
+                <button class="btn btn-sm btn-outline-danger" type="submit"><i class="bi bi-trash me-1"></i>Удалить</button>
+              </form>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+
+  <% if (!festivals.length) { %>
+    <div class="col-12">
+      <div class="alert alert-info">По вашему запросу ничего не найдено.</div>
+    </div>
+  <% } %>
+</div>
+
+<%- include("../partials/layout_bottom") %>

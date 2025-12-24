@@ -1,0 +1,82 @@
+<%- include("../partials/layout_top", { title }) %>
+<div class="row g-4">
+  <div class="col-12 col-lg-5">
+    <div class="card card-glass shadow-sm">
+      <div class="card-body p-4">
+        <div class="d-flex align-items-center gap-3">
+          <div class="avatar">
+            <i class="bi bi-person-circle"></i>
+          </div>
+          <div>
+            <h1 class="h5 mb-1">Об авторе</h1>
+            <div class="text-white-50">Информация для отчетности и защиты проекта.</div>
+          </div>
+        </div>
+
+        <dl class="row mt-4 mb-0 text-white-50">
+          <dt class="col-5">ФИО</dt>
+          <dd class="col-7 text-white"><%= author.fullName %></dd>
+          <dt class="col-5">Группа</dt>
+          <dd class="col-7 text-white"><%= author.contact %></dd>
+          <dt class="col-5">Стек</dt>
+          <dd class="col-7 text-white"><%= author.stack %></dd>
+          <dt class="col-5">Начало</dt>
+          <dd class="col-7 text-white"><%= author.started %></dd>
+          <dt class="col-5">Завершение</dt>
+          <dd class="col-7 text-white"><%= author.finished %></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-7">
+    <div class="card card-glass shadow-sm">
+      <div class="card-body p-4">
+        <h2 class="h6 mb-3">О проекте</h2>
+        <p class="text-white-50">
+          Веб-приложение предназначено для накопления и предоставления справочной информации о музыкальных фестивалях,
+          а также для планирования выступлений и сбора обратной связи пользователей.
+        </p>
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <div class="feature">
+              <div class="feature-i"><i class="bi bi-database"></i></div>
+              <div>
+                <div class="fw-semibold text-white">Надежное хранение</div>
+                <div class="text-white-50 small">PostgreSQL с ограничениями целостности и индексами.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="feature">
+              <div class="feature-i"><i class="bi bi-shield-check"></i></div>
+              <div>
+                <div class="fw-semibold text-white">Контроль доступа</div>
+                <div class="text-white-50 small">Роли (Зритель / Организатор / Администратор).</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="feature">
+              <div class="feature-i"><i class="bi bi-ui-checks"></i></div>
+              <div>
+                <div class="fw-semibold text-white">Удобные формы</div>
+                <div class="text-white-50 small">CRUD интерфейсы для основных сущностей.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="feature">
+              <div class="feature-i"><i class="bi bi-graph-up"></i></div>
+              <div>
+                <div class="fw-semibold text-white">Визуализация</div>
+                <div class="text-white-50 small">Диаграммы и таблицы статистики.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include("../partials/layout_bottom") %>

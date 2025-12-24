@@ -1,0 +1,157 @@
+:root{
+  --bg1:#0b1020;
+  --bg2:#0a2a3a;
+  --glass: rgba(255,255,255,.08);
+  --border: rgba(255,255,255,.12);
+  --soft: rgba(255,255,255,.16);
+}
+
+*{ box-sizing:border-box; }
+
+.app-body, .auth-body{
+  min-height:100vh;
+  background: radial-gradient(1200px 600px at 20% 10%, #2b3c7a 0%, transparent 55%),
+              radial-gradient(1000px 500px at 80% 20%, #124b5f 0%, transparent 55%),
+              linear-gradient(120deg, var(--bg1), var(--bg2));
+  color: #fff;
+}
+
+.bg-glass{
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.card-glass{
+  background: var(--glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+}
+
+.mini-card{
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.mini-card:hover{ border-color: rgba(255,255,255,.24); transform: translateY(-1px); transition: .12s ease; }
+
+.brand-mark{
+  width: 38px; height: 38px;
+  border-radius: 14px;
+  display:grid; place-items:center;
+  background: linear-gradient(135deg, rgba(92, 225, 230, .5), rgba(189, 92, 255, .35));
+  border: 1px solid rgba(255,255,255,.18);
+  font-weight: 800;
+  letter-spacing: .5px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.brand-mark.lg{ width: 54px; height: 54px; border-radius: 18px; font-size: 18px; }
+
+.badge.bg-soft{
+  background: rgba(255,255,255,.14) !important;
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+.link-light-subtle{ color: rgba(255,255,255,.75); }
+.link-light-subtle:hover{ color:#fff; }
+
+.kpi{
+  display:flex; gap:12px; align-items:center;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.05);
+}
+.kpi-icon{
+  width: 42px; height: 42px; border-radius: 16px;
+  display:grid; place-items:center;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.16);
+}
+.kpi-value{ font-size: 26px; font-weight: 800; line-height: 1; }
+.kpi-label{ font-size: 12px; color: rgba(255,255,255,.65); }
+
+.review, .stage-item{
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+}
+
+.stat-tile{
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+}
+.stat-v{ font-size: 22px; font-weight: 800; }
+.stat-l{ font-size: 12px; color: rgba(255,255,255,.65); }
+
+.feature{
+  display:flex; gap:12px; align-items:flex-start;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+}
+.feature-i{
+  width: 40px; height: 40px; border-radius: 16px;
+  display:grid; place-items:center;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.16);
+  font-size: 18px;
+}
+
+.avatar{
+  width: 56px; height: 56px; border-radius: 22px;
+  display:grid; place-items:center;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.16);
+  font-size: 28px;
+}
+
+.auth-wrap{
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 28px 16px;
+}
+.auth-card{
+  width: min(980px, 100%);
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+}
+@media(max-width: 900px){
+  .auth-card{ grid-template-columns: 1fr; }
+}
+.auth-hero{
+  padding: 44px 40px;
+  background: radial-gradient(600px 300px at 30% 20%, rgba(92, 225, 230, .45) 0%, transparent 55%),
+              radial-gradient(600px 300px at 70% 40%, rgba(189, 92, 255, .35) 0%, transparent 60%),
+              rgba(0,0,0,.15);
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+@media(max-width: 900px){
+  .auth-hero{ border-right: none; border-bottom: 1px solid rgba(255,255,255,.12); }
+}
+
+.clamp-3{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow:hidden;
+}
+
+.table-dark{
+  --bs-table-bg: rgba(0,0,0,.18);
+  --bs-table-striped-bg: rgba(255,255,255,.04);
+  --bs-table-hover-bg: rgba(255,255,255,.06);
+  --bs-table-border-color: rgba(255,255,255,.12);
+}
+
+code{ color: rgba(92,225,230,.95); }

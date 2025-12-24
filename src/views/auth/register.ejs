@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+  <head><%- include("../partials/head", { title }) %></head>
+  <body class="auth-body">
+    <main class="auth-wrap">
+      <div class="auth-card shadow-lg">
+        <div class="auth-hero">
+          <div class="brand-mark lg">FDB</div>
+          <h1 class="h4 mb-1">Регистрация</h1>
+          <p class="text-white-50 mb-0">Создайте аккаунт зрителя</p>
+        </div>
+
+        <div class="p-4 p-md-5">
+          <% if (flash.error && flash.error.length) { %>
+            <div class="alert alert-danger"><%= flash.error[0] %></div>
+          <% } %>
+
+          <form method="post" action="/register" class="vstack gap-3">
+            <div>
+              <label class="form-label">ФИО</label>
+              <input name="full_name" class="form-control" required placeholder="Аминева Лилия Ильдаровна">
+            </div>
+            <div>
+              <label class="form-label">Email</label>
+              <input name="email" type="email" class="form-control" required placeholder="you@example.com">
+            </div>
+            <div>
+              <label class="form-label">Пароль</label>
+              <input name="password" type="password" class="form-control" required placeholder="Минимум 8 символов">
+              <div class="form-text text-white-50">Пароль хранится только в виде хэша (bcrypt).</div>
+            </div>
+            <button class="btn btn-primary w-100" type="submit"><i class="bi bi-person-plus me-1"></i>Зарегистрироваться</button>
+          </form>
+
+          <div class="text-center mt-3">
+            <a href="/login" class="link-light-subtle">Уже есть аккаунт? Войти</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
