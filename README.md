@@ -2,12 +2,10 @@
 
 
 ## Stack
-- Node.js + Express
 - Server-side rendered UI: EJS templates (HTML) + Bootstrap 5 + custom CSS
 - PostgreSQL
 - Password hashing: bcrypt
 - Sessions: express-session
-- Charts: Chart.js (CDN)
 
 ## Features
 - Registration & login (users must be authenticated to access the system)
